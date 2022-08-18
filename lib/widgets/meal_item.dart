@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../models/meal.dart';
 import './meal_item_text.dart';
@@ -64,7 +65,10 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => sellectMeal(context),
+      onTap: () {
+        sellectMeal(context);
+        HapticFeedback.heavyImpact();
+      },
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),

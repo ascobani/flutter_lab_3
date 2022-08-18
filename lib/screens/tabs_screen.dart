@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import './categories_screen.dart';
 import './favorites_screen.dart';
@@ -19,6 +20,7 @@ class _MyWidgetState extends State<TabsScreen> {
         bottomNavigationBar: BottomAppBar(
           color: Theme.of(context).colorScheme.primary,
           child: TabBar(
+            onTap: (value) =>  HapticFeedback.heavyImpact(),
             enableFeedback: true,
             indicatorColor: Colors.white54,
             tabs: [

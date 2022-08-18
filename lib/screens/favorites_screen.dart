@@ -9,6 +9,7 @@ class FavoritesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Favorites'),
       ),
+  
       body: Center(
         child: Text('sdfad'),
       ),

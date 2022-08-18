@@ -13,7 +13,10 @@ class ErrorScreen extends StatelessWidget {
           children: [
             Text(
               'We couldn\'t find that page!',
-              style: TextStyle(fontSize: 50, color: Colors.red,),
+              style: TextStyle(
+                fontSize: 50,
+                color: Colors.red,
+              ),
             ),
           ],
         ),
