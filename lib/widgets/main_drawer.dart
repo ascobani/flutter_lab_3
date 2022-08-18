@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import './drawer_list_tile.dart';
+
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
 
@@ -27,41 +29,15 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          ListTile(
-            leading: Icon(
-              Icons.restaurant,
-              size: 26,
-            ),
-            title: Text(
-              'Meals',
-              style: TextStyle(
-                fontFamily: 'RobotoCondensed',
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            onTap: () {
-              //...
-              HapticFeedback.heavyImpact();
-            },
+          DrawerListTile(
+            icon: Icons.restaurant,
+            title: 'Meals',
+            naivgate: 'naivgate',
           ),
-          ListTile(
-            leading: Icon(
-              Icons.settings,
-              size: 26,
-            ),
-            title: Text(
-              'Settings',
-              style: TextStyle(
-                fontFamily: 'RobotoCondensed',
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            onTap: () {
-              //...
-              HapticFeedback.heavyImpact();
-            },
+          DrawerListTile(
+            icon: Icons.settings,
+            title: 'Settings',
+            naivgate: 'naivgate',
           ),
         ],
       ),
