@@ -5,7 +5,6 @@ import './screens/error_screen.dart';
 import './screens/meal_detail_screen.dart';
 import 'screens/categories_meals_screen.dart';
 
-
 void main() => runApp(
       MyApp(),
     );
@@ -43,9 +42,10 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-        colorScheme:
-            ColorScheme.fromSwatch(primarySwatch: Colors.pink).copyWith(
-          secondary: Colors.pinkAccent,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.pink,
+        ).copyWith(
+          secondary: Colors.amberAccent,
         ),
       ),
       //  home: CategoriesScreen(),

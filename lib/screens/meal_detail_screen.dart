@@ -35,12 +35,7 @@ class MealDetailScreen extends StatelessWidget {
     final mealId = ModalRoute.of(context)!.settings.arguments as String;
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '${selectedMeal.title}',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
