@@ -1,10 +1,10 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class DrawerListTile extends StatelessWidget {
   final String title;
   final IconData icon;
-  void naivgate;
+  Function naivgate;
 
   DrawerListTile({
     required this.icon,
@@ -26,10 +26,7 @@ class DrawerListTile extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: () {
-        naivgate;
-        HapticFeedback.heavyImpact();
-      },
+      onTap: naivgate(),
     );
   }
 }
