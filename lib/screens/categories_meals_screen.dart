@@ -17,6 +17,9 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   late List<Meal> displayedMeals;
 
   @override
+ 
+
+  @override
   void didChangeDependencies() {
     final routeArgs =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
@@ -34,7 +37,6 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
       displayedMeals.removeWhere((meal) => meal.id == mealId);
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

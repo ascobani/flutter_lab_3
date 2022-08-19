@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               titleSmall: TextStyle(
-                fontSize: 10,
+                fontSize: 13,
                 fontFamily: 'RobotoCondensed',
                 fontWeight: FontWeight.bold,
               ),
