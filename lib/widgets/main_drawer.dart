@@ -44,7 +44,7 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pushNamed('/');
+              Navigator.of(context).pushReplacementNamed('/');
               HapticFeedback.heavyImpact();
             },
           ),
@@ -62,7 +62,7 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pushNamed(SettingsScreen.routeName);
+              Navigator.of(context).pushReplacementNamed(SettingsScreen.routeName);
               HapticFeedback.heavyImpact();
             },
           ),

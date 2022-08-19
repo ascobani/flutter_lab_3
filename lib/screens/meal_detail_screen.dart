@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../dummy_data.dart';
 
@@ -35,7 +36,12 @@ class MealDetailScreen extends StatelessWidget {
     final mealId = ModalRoute.of(context)!.settings.arguments as String;
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
     return Scaffold(
-      
+      appBar: AppBar(
+        title: Text(
+          selectedMeal.title,
+          style: TextStyle(fontSize: 27),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -89,6 +95,14 @@ class MealDetailScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+          HapticFeedback.heavyImpact();
+        },
       ),
     );
   }
