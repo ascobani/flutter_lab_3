@@ -16,11 +16,11 @@ TabsScreen(this.favoriteMeals);
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-   late List<Widget> _pages;
+    late List<Widget> _pages;
 
   @override
   void initState() {
-   _pages = [
+    _pages = [
     CategoriesScreen(),
     FavoritesScreen(widget.favoriteMeals),
   ];

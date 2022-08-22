@@ -27,7 +27,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
     displayedMeals = widget._availableMeals.where((meal) {
       return meal.categoryIds.contains(categoryId);
     }).toList();
-    // TODO: implement didChangeDependencies
+
     super.didChangeDependencies();
   }
 
@@ -52,7 +52,6 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
             duration: displayedMeals[index].duration,
             complexity: displayedMeals[index].complexity,
             affordability: displayedMeals[index].affordability,
-            removeItem: removeMeal,
           );
         },
         itemCount: displayedMeals.length,
