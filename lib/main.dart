@@ -42,6 +42,21 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'RobotoCondensed',
                 fontWeight: FontWeight.bold,
               ),
+              bodyLarge: TextStyle(
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+              bodyMedium: TextStyle(
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+              bodySmall: TextStyle(
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+              ),
             ),
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.pink,
@@ -55,7 +70,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => TabsScreen(),
         CategoryMealsScreen.routeName: (context) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (context) => MealDetailScreen(),
-        SettingsScreen.routeName:(context) => SettingsScreen(),
+        SettingsScreen.routeName: (context) => SettingsScreen(),
       },
       onUnknownRoute: (settings) {
         print(settings.arguments);

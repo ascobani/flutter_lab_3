@@ -1,5 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/rendering.dart';
+import 'dart:io';
 
 import '../widgets/main_drawer.dart';
 import '../widgets/adaptive_switch_list_tile.dart';
@@ -12,8 +16,8 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _lactosefree = false;
   bool _glutenfree = false;
+  bool _lactosefree = false;
   bool _vegetarian = false;
   bool _vegan = false;
 
@@ -33,55 +37,294 @@ class _SettingsScreenState extends State<SettingsScreen> {
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
-          Expanded(
-            child: ListView(
-              children: <Widget>[
-                SwitchListTile(
-                  title: Text('Gluten-free'),
-                  subtitle: Text('Only include Gluten-free meals'),
-                  value: _glutenfree,
-                  onChanged: null,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Container(
-                      width: 200,
-                      child: Column(
-                        children: <Widget>[
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Gluten-free',
-                              style: TextStyle(
-                                  fontFamily: 'Raleway',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.black45),
+          // 1
+          Container(
+            height: 40,
+            child: Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Platform.isAndroid
+                      ? SwitchListTile(
+                          title: Text('Gluten-free'),
+                          subtitle: Text('Only include Gluten-free meals'),
+                          value: _glutenfree,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _glutenfree = newValue;
+                            });
+                          },
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Container(
+                              width: 200,
+                              child: Column(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Gluten-free',
+                                      style: TextStyle(
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.black),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text(
+                                    'Only include Gluten-free meals',
+                                    style: TextStyle(
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13,
+                                        color: Colors.black38),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Only include Gluten-free meals',
-                            style: TextStyle(
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13,
-                                color: Colors.black26),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 70,
-                    ),
-                    CupertinoSwitch(
-                      onChanged: null,
-                      value: _glutenfree,
-                    ),
-                  ],
-                )
-              ],
+                            SizedBox(
+                              width: 70,
+                            ),
+                            CupertinoSwitch(
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _glutenfree = newValue;
+                                });
+                              },
+                              value: _glutenfree,
+                            ),
+                          ],
+                        ),
+                ],
+              ),
             ),
+          ),
+          // 2
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 40,
+            child: Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Platform.isAndroid
+                      ? SwitchListTile(
+                          title: Text('Lactose-free'),
+                          subtitle: Text('Only include Lactose-free meals'),
+                          value: _lactosefree,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _lactosefree = newValue;
+                            });
+                          },
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Container(
+                              width: 240,
+                              child: Column(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Lactose-free',
+                                      style: TextStyle(
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.black),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Only include Lactose-free meals',
+                                      style: TextStyle(
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                          color: Colors.black38),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            CupertinoSwitch(
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _lactosefree = newValue;
+                                });
+                              },
+                              value: _lactosefree,
+                            ),
+                          ],
+                        ),
+                ],
+              ),
+            ),
+          ),
+          // 3
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 40,
+            child: Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Platform.isAndroid
+                      ? SwitchListTile(
+                          title: Text('Vegetarian'),
+                          subtitle: Text('Only include Vegetarian meals'),
+                          value: _vegetarian,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _vegetarian = newValue;
+                            });
+                          },
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Container(
+                              width: 221,
+                              child: Column(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Vegetarian',
+                                      style: TextStyle(
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.black),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Only include Vegetarian meals',
+                                      style: TextStyle(
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                          color: Colors.black38),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 37,
+                            ),
+                            CupertinoSwitch(
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _vegetarian = newValue;
+                                });
+                              },
+                              value: _vegetarian,
+                            ),
+                          ],
+                        ),
+                ],
+              ),
+            ),
+          ),
+          // 4
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 40,
+            child: Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Platform.isAndroid
+                      ? SwitchListTile(
+                          title: Text('Vegan'),
+                          subtitle: Text('Only include Vegan meals'),
+                          value: _vegan,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _vegan = newValue;
+                            });
+                          },
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Container(
+                              width: 200,
+                              child: Column(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Vegan',
+                                      style: TextStyle(
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.black),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Only include Vegan meals',
+                                      style: TextStyle(
+                                          fontFamily: 'Raleway',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                          color: Colors.black38),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 60,
+                            ),
+                            CupertinoSwitch(
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _vegan = newValue;
+                                });
+                              },
+                              value: _vegan,
+                            ),
+                          ],
+                        ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Theme',
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ],
       ),

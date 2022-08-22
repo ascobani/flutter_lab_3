@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'dart:io';
 
 class AdaptiveSwitchListTile extends StatelessWidget {
   final String subtitle;
@@ -16,16 +17,16 @@ class AdaptiveSwitchListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Expanded(
+         Expanded(
           child: ListView(
             children: <Widget>[
-              SwitchListTile(
+             Platform.isAndroid? SwitchListTile(
                 title: Text(title),
                 subtitle: Text(subtitle),
                 value: value,
                 onChanged: null,
-              ),
-              Row(
+              )
+              : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Container(
