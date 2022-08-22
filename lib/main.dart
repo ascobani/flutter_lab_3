@@ -26,6 +26,8 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
+
   void _setFilters(Map<String, bool> filterData) {
     _filters = filterData;
     _availableMeals = DUMMY_MEALS.where((meal) {
@@ -99,7 +101,7 @@ class _MyAppState extends State<MyApp> {
       //  home: CategoriesScreen(),
       initialRoute: '/',
       routes: {
-        '/': (context) => TabsScreen(),
+        '/': (context) => TabsScreen(_favoriteMeals),
         CategoryMealsScreen.routeName: (context) =>
             CategoryMealsScreen(_availableMeals),
         MealDetailScreen.routeName: (context) => MealDetailScreen(),
