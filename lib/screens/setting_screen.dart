@@ -1,15 +1,18 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
+
 import 'dart:io';
 
 import '../widgets/main_drawer.dart';
-import '../widgets/adaptive_switch_list_tile.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const routeName = '/settigns';
+
+  final Function(Map<String, bool>)  saveFilters;
+  final Map<String, bool> currentFilters;
+
+  SettingsScreen(this.saveFilters, this.currentFilters);
+
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -22,9 +25,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _vegan = false;
 
   @override
+  void initState() {
+    _glutenfree = widget.currentFilters['gluten']!;
+    _lactosefree = widget.currentFilters['lactose']!;
+    _vegetarian = widget.currentFilters['vegetarian']!;
+    _vegan = widget.currentFilters['vegan']!;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                final sellectedFilters = {
+                  'gluten': _glutenfree,
+                  'lactose': _lactosefree,
+                  'vegetarian': _vegetarian,
+                  'vegan': _vegan,
+                };
+                widget.saveFilters(sellectedFilters);
+              },
+              icon: Icon(Icons.save))
+        ],
         title: Text('Settings'),
       ),
       drawer: MainDrawer(),

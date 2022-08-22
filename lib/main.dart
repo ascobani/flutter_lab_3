@@ -1,17 +1,49 @@
 import 'package:flutter/material.dart';
 
+import './dummy_data.dart';
 import './screens/tabs_screen.dart';
 import './screens/error_screen.dart';
 import './screens/meal_detail_screen.dart';
 import './screens/categories_meals_screen.dart';
 import './screens/setting_screen.dart';
+import './models/meal.dart';
 
 void main() => runApp(
       MyApp(),
     );
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegetarian': false,
+    'vegan': false,
+  };
+
+  List<Meal> _availableMeals = DUMMY_MEALS;
+  void _setFilters(Map<String, bool> filterData) {
+    _filters = filterData;
+    _availableMeals = DUMMY_MEALS.where((meal) {
+      if (_filters['gluten'] == true && !meal.isGlutenFree) {
+        return false;
+      }
+      if (_filters['lactose'] == true && !meal.isLactoseFree) {
+        return false;
+      }
+      if (_filters['vegetarian'] == true && !meal.isVegetarian) {
+        return false;
+      }
+      if (_filters['vegan'] == true && !meal.isVegan) {
+        return false;
+      }
+      return true;
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +100,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => TabsScreen(),
-        CategoryMealsScreen.routeName: (context) => CategoryMealsScreen(),
+        CategoryMealsScreen.routeName: (context) =>
+            CategoryMealsScreen(_availableMeals),
         MealDetailScreen.routeName: (context) => MealDetailScreen(),
-        SettingsScreen.routeName: (context) => SettingsScreen(),
+        SettingsScreen.routeName: (context) => SettingsScreen(_setFilters,_filters),
       },
       onUnknownRoute: (settings) {
         print(settings.arguments);
